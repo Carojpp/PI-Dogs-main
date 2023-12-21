@@ -11,9 +11,9 @@ const dogsRouter = Router();  //Instaciamos nuestro Router de express para poder
 
 console.log('loding dogsRouter');
 
-dogsRouter.get('/dogs', (req, res) => {
+dogsRouter.get('/dogs', async (req, res) => {
   console.log('file: dogsRouter.js -> /dogs');
-  const result = getDogsController() // ejecutamos la funcion getDogsController(que son los datos que tenemos desde la API que relacinamos en controller)
+  const result = await getDogsController() // ejecutamos la funcion getDogsController(que son los datos que tenemos desde la API que relacinamos en controller)
   res.send(result); // aca devuelve lo que le asignamos a result, el valor que da getDogsController
 });
 
