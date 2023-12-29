@@ -23,6 +23,7 @@ const { conn } = require('./src/db.js');
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
+    console.log(`Connected to posgres`); // eslint-disable-line no-console
     console.log(`Server is running at http://localhost:3001`); // eslint-disable-line no-console
   });
 });
