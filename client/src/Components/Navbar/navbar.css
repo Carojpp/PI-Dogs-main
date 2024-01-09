@@ -11,22 +11,21 @@
     margin-right: 20px;
 } 
 .nav-img{
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    height: 12vh;
+    position: absolute;
+    right: 0;
+    height: 90px;
 }
-.home{
+.nav-link{
+    background-color:  #62d98c;
   text-decoration: none;
   color: white;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   size: 20px;
   font-size: 20px;
+  padding: 5px 10px;
 }
 .div-links{
-    background-color:  #62d98c;
     border-radius: 5px;
-    width: 300px;
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;

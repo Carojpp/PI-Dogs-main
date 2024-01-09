@@ -1,0 +1,7 @@
+.details_inf{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    padding-top: 20px;
+}

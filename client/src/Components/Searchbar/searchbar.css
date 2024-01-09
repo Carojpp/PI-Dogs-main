@@ -1,0 +1,29 @@
+
+.searchBar{
+    background-color: violet  ;
+    border-bottom: solid 2px black;
+}
+
+.searchBar input {
+    width: 250px;
+    padding: 9px;
+}
+
+.searchBar ul{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    margin: 0;
+    padding: 0;
+    width: 271px;
+    max-height: 300px;
+    overflow: scroll;
+}
+.searchBar ul li{
+    padding: 5px;
+}
+
+.searchBar ul li a{
+    text-decoration: none;
+}

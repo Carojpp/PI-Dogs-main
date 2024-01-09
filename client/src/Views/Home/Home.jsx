@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { getDogs, dogsPage, loadingDogs } from "../../Redux/Actions/index.js";
+import Navbar from "../../Components/Navbar/Navbar.jsx";
+import Dogs from "../../Components/Dogs/Dogs.jsx";
 import "./home.css";
 
 const Home = () => {
@@ -9,14 +11,10 @@ const Home = () => {
   // const dogfilter = useSelector((state) => state.dogfilter);
   // const loading = useSelector((state) => state.loadingDogs);
   // const filter = useSelector((state) => state.filter);
-  const loading = false
+  const loading = false;
   const filter = null;
-  const paginate =0;
-  // const paginate = (event) => {
-  //   dispatch(dogsPage(event.target.name));
-  // };
+  const [paginate, setPaginate] = useState(0);
 
-  
   // useEffect(() => {
   //   dispatch(loadingDogs(true));
   //   dispatch(getDogs());
@@ -24,7 +22,8 @@ const Home = () => {
 
   return (
     <div className="total">
-      {/* <Searchbar/> */}
+      <Navbar/>
+
       <div className={filter ? "div-container-filter" : "div-container"}>
         {loading ? (
           <>
@@ -38,17 +37,25 @@ const Home = () => {
           </>
         ) : (
           <>
-            {/* <Dogs nameOfClass={filter?'no-div':'div'}dogs={filter?dogfilter:dogs}></Dogs> */}
+            <Dogs page={paginate} />
             {filter ? (
               <></>
             ) : (
               <>
                 <div className="div-buttons">
-                  <button onClick={paginate} name="prev" className="left">
-                    ⇦qq
+                  <button
+                    onClick={() => setPaginate(paginate - 1)}
+                    name="prev"
+                    className="left"
+                  >
+                    prev
                   </button>
-                  <button onClick={paginate} name="next" className="right">
-                    ⇨
+                  <button
+                    onClick={() => setPaginate(paginate + 1)}
+                    name="next"
+                    className="right"
+                  >
+                    next
                   </button>
                 </div>
               </>

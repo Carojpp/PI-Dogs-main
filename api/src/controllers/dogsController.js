@@ -27,6 +27,28 @@ const getDogsController = async (req, res) => {
   }
 };
 
+//Como acceso un controlador desde la ruta? , debo importarlo en routes
+const searchDogsController = async (req, res) => {
+  try {
+    const {limit, search } = req.query
+    // se utiliza para ejecutar código que podría lanzar un error. Si ocurre un error dentro de este bloque, el control pasa al bloque catch
+    const response = await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${search}&limit=${limit}`, {
+      // Realiza una solicitud GET asincrónica a la URL
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key":
+          "live_9Bhss5Zu4ygXfxx8XRyTuj7pvAgcCskGWDnKPqxuV6hFYVqdInDgZqvHXhym33Y7", // Token de la API
+      },
+    });
+    //return response.data; // Si la solicitud es exitosa, la función devuelve los datos obtenidos de la API
+    res.json(response.data); // status 200
+  } catch (error) {
+    // Si ocurre un error durante la solicitud (por ejemplo, un problema de red o si la API devuelve un error), el control pasa a este bloque.
+    return error;
+    //res.status(500).send(error.toString());
+  }
+};
+
 const createDogController = async (req, res) => {
   try {
     console.log('createDogController');
@@ -59,4 +81,5 @@ const createDogController = async (req, res) => {
 module.exports = {
   getDogsController,
   createDogController,
+  searchDogsController
 };
