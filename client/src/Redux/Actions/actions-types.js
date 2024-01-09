@@ -1,0 +1,9 @@
+export const POST_DOG = "POST_DOG"
+export const GET_DOGS = "GET_DOGS"
+export const FILTER_NAME = "FILTER_NAME"
+export const PAGINATE = "PAGINATE"
+export const GET_ONE_DOG = 'GET_ONE_DOG'
+export const LOADING_DETAILS = 'LOADING_DETAILS'
+export const LOADING_DOGS = 'LOADING_DOGS'
+export const CLOSE_FILTER = 'CLOSE_FILTER'
+export const GET_TYPES = 'GET_TYPES'

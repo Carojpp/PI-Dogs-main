@@ -1,0 +1,36 @@
+.total{
+    background: linear-gradient( rgba(252,221,1,1) 28%, rgba(255,148,0,1) 78%);
+}
+.div-container{
+    height: 100%;
+}
+.div-container-filter{
+    height: 100vh;
+}
+.div-buttons{
+    display: flex;
+    justify-content: center;
+}
+.left{
+    margin-top: 20px;
+    margin-bottom:20px;
+    padding: 5px 5px 10px 6px;
+}
+.right{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 5px 6px 10px 5px;
+}
+
+.div-loading{
+    display: flex;  
+   justify-content: center;
+   align-items: center; 
+   width: 100%;
+   height: 100vh;
+}
+.loading-img{
+    height: 200px;
+    width: 480px;
+    margin-right: 100px;
+}
