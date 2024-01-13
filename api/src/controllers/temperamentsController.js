@@ -16,7 +16,6 @@ const getTemperamentsController = async (req, res) => {
         entidad: result,
       });
     }
-
     // se utiliza para ejecutar código que podría lanzar un error. Si ocurre un error dentro de este bloque, el control pasa al bloque catch
     const response = await axios.get(`${URL_API}/v1/breeds`, {
       // Realiza una solicitud GET asincrónica a la URL
@@ -26,7 +25,6 @@ const getTemperamentsController = async (req, res) => {
           "live_9Bhss5Zu4ygXfxx8XRyTuj7pvAgcCskGWDnKPqxuV6hFYVqdInDgZqvHXhym33Y7",
       },
     });
-
     let tempe = [];
 
     response.data.forEach(breed => {
@@ -58,7 +56,6 @@ const getTemperamentsController = async (req, res) => {
       mensaje: "Temperaments created",
       entidad: resp,
     });
-    
 
   } catch (error) {
     // Si ocurre un error durante la solicitud (por ejemplo, un problema de red o si la API devuelve un error), el control pasa a este bloque.
@@ -88,7 +85,6 @@ const createTemperamentController = async (req, res) => {
     res.status(500).send(error.toString());
   }
 };
-
 
 module.exports = {
   createTemperamentController,

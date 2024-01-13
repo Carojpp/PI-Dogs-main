@@ -3,6 +3,8 @@
 }
 .div-container{
     height: 100%;
+    width: 980px;
+    margin: auto;
 }
 .div-container-filter{
     height: 100vh;

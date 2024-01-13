@@ -14,7 +14,6 @@ function CreateBreed() {
     fetch("http://localhost:3001/temperaments")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setTemperamentList(data.entidad);
       });
   }, []);
@@ -52,6 +51,12 @@ function CreateBreed() {
       .then((data) => {
         // Handle the response data here
         console.log("Success:", data);
+
+        setName("")
+        setHeight("")
+        setWeight("")
+        setLifeSpan("")
+        setTemperaments("")
       })
       .catch((error) => {
         console.error("Error:", error);

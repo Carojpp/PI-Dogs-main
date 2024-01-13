@@ -13,6 +13,9 @@ const Navbar = () => {
         <Link to="/create-breed" className="nav-link">
           Create breed
         </Link>
+        <Link to="/create-temperament" className="nav-link">
+          Create temperament
+        </Link>
       </div>
       <SearchBar />
       <div className="nav-img">

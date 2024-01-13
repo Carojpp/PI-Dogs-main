@@ -6,12 +6,14 @@
     Objetivo, cruzar por el enrutador, pasar a controllers y conectarlo con sequalize
 */ 
 const { Router } = require('express');
-const { getDogsController, createDogController,searchDogsController } = require('../controllers/dogsController.js'); // importamos la ruta desde controller
+const { getDogsApiController,getDogsLocalController, createDogController,searchDogsController } = require('../controllers/dogsController.js'); // importamos la ruta desde controller
 const dogsRouter = Router();  //Instaciamos nuestro Router de express para poder agregar nuestras rutas 
 
 console.log('loding dogsRouter');
 
-dogsRouter.get('/dogs',getDogsController);
+dogsRouter.get('/dogs',getDogsApiController);
+
+dogsRouter.get('/local',getDogsLocalController);
 
 dogsRouter.post('/createdog',createDogController);
 
