@@ -51,7 +51,7 @@ const getDogsApiController = async (req, res) => {
       },
     });
    
-    res.json(response.data); // status 200
+    res.json({data:response.data}); // status 200
   } catch (error) {
     // Si ocurre un error durante la solicitud (por ejemplo, un problema de red o si la API devuelve un error), el control pasa a este bloque.
     return error;
@@ -63,16 +63,22 @@ const getDogsApiController = async (req, res) => {
 const getDogsLocalController = async (req, res) => {
   try {
     const {limit, page } = req.query
-    let dogs = []
     console.log('getDogsLocalController ')
+    
+    const currentPage = Math.max(page, 1);
+    const offset = (currentPage - 1) * limit; 
 
-    const responseLocal = await Breed.findAll(); // puedo usar findAll porque es un modelo de sequalize que se conecta a la tabla temperaments de postgres 
-    if (responseLocal.length > 0) {
-      dogs.push(...responseLocal)
+    console.log('query ',req.query)
+    console.log('offset ',offset)
+    const dogs = await Breed.findAll({ limit, offset });
+    
+    const response = {
+      data: dogs,
     }
+    res.json(response);
 
-    res.json(dogs); // status 200
   } catch (error) {
+    console.log('error ',error)
     // Si ocurre un error durante la solicitud (por ejemplo, un problema de red o si la API devuelve un error), el control pasa a este bloque.
     return error;
     //res.status(500).send(error.toString());
@@ -131,10 +137,40 @@ const createDogController = async (req, res) => {
   }
 };
 
+const getDetailDogController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log('getDetailDogController ',id);
+    // se utiliza para ejecutar código que podría lanzar un error. Si ocurre un error dentro de este bloque, el control pasa al bloque catch
+    // Extraer datos del cuerpo de la solicitud
+    const dog = await Breed.findOne({
+      where: {
+        id
+      }
+    });
+    dog.temperament =  dog.temperaments.join(", ");
+    res.status(201).json({
+      life_span: dog.age,
+      height: dog.height,
+      weight: dog.weight,
+      id: dog.id,
+      image: dog.image,
+      name: dog.name,
+      temperament: dog.temperaments.join(", "),
+    });
+
+  } catch (error) {
+    // Si ocurre un error durante la solicitud (por ejemplo, un problema de red o si la API devuelve un error), el control pasa a este bloque.
+    console.log('error',error);
+    res.status(500).send(error.toString());
+  }
+}
+
 module.exports = {
   getDogsController,
   createDogController,
   searchDogsController,
   getDogsApiController,
-  getDogsLocalController
+  getDogsLocalController,
+  getDetailDogController
 };

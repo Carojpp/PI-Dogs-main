@@ -1,4 +1,4 @@
-/*
+ /*
 Conectaremos el api y a la base de datos
 */
 const express = require("express");

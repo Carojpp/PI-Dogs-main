@@ -6,7 +6,7 @@
     Objetivo, cruzar por el enrutador, pasar a controllers y conectarlo con sequalize
 */ 
 const { Router } = require('express');
-const { getDogsApiController,getDogsLocalController, createDogController,searchDogsController } = require('../controllers/dogsController.js'); // importamos la ruta desde controller
+const {getDetailDogController, getDogsApiController, getDogsLocalController, createDogController,searchDogsController } = require('../controllers/dogsController.js'); // importamos la ruta desde controller
 const dogsRouter = Router();  //Instaciamos nuestro Router de express para poder agregar nuestras rutas 
 
 console.log('loding dogsRouter');
@@ -18,6 +18,8 @@ dogsRouter.get('/local',getDogsLocalController);
 dogsRouter.post('/createdog',createDogController);
 
 dogsRouter.get('/searchdog',searchDogsController)
+
+dogsRouter.get('/dogsDetail/:id',getDetailDogController)
 /*
   El parametro que se ejecuta sera idRaza el cual me traera la raza especifica de un perro (que es cualquier raza que yo relacione, ejemplo golden, husky)
     1. Obtener el idRaza de la variable req

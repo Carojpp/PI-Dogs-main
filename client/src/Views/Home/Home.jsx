@@ -13,7 +13,7 @@ const Home = () => {
   // const filter = useSelector((state) => state.filter);
   const loading = false;
   const filter = null;
-  const [paginate, setPaginate] = useState(0);
+  const [paginate, setPaginate] = useState(1);
 
   // useEffect(() => {
   //   dispatch(loadingDogs(true));
