@@ -7,22 +7,17 @@ import "./details.css";
 
 function DogDetails() {
   const navigate = useNavigate();
-  const [api, setApi] = useState("");
   const [dog, setDog] = useState(null);
   const [img, setImg] = useState(null);
   const { id } = useParams();
 
   const apiDogs = useSelector((state) => state.api);
 
-  useEffect(() => {
-    setApi(apiDogs);
-  }, [apiDogs]);
-
   const fetchDogDetails = async () => {
     let data = null;
     let data_img = "";
     let response = null;
-    if (api == "dogs") {
+    if (apiDogs == "dogs") {
       response = await fetch(`https://api.thedogapi.com/v1/breeds/${id}`);
       data = await response.json();
 
@@ -31,7 +26,7 @@ function DogDetails() {
       );
       data_img = await response_img.json();
       setImg(data_img.url);
-    } else if (api == "local") {
+    } else if (apiDogs == "local") {
       response = await fetch(`http://localhost:3001/dogsDetail/${id}`);
       data = await response.json();
     }
@@ -49,8 +44,8 @@ function DogDetails() {
   };
 
   useEffect(() => {
-    if (api !== "") fetchDogDetails();
-  }, [api]);
+    if (apiDogs !== "") fetchDogDetails();
+  }, [apiDogs]);
 
   return (
     <>

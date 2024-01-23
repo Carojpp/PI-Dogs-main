@@ -7,41 +7,28 @@ import "./dogs.css";
 
 const Dogs = ({ page }) => {
   const [dogs, setDogs] = useState([]);
-  const [api, setApi] = useState("");
   const dispatch = useDispatch();
 
   const apiDogs = useSelector((state) => state.api);
-  useEffect(() => {
-    setApi(apiDogs);
-  }, [apiDogs]);
 
   const fetchDogs = async () => {
     const response = await fetch(
-      `http://localhost:3001/${api}?limit=2&page=${page}`
+      `http://localhost:3001/${apiDogs}?limit=8&page=${page}`
     );
     const data = await response.json();
 
     setDogs(data.data);
   };
 
-  const fetchImg = async (image_id) => {
-    const response_img = await fetch(
-      `https://api.thedogapi.com/v1/images/${image_id}`
-    );
-    const data_img = await response_img.json();
-    return data_img.url;
-  };
-
   useEffect(() => {
-    if (api !== "") fetchDogs();
-  }, [page, api]);
+    if (apiDogs !== "") fetchDogs();
+  }, [page, apiDogs]);
 
   return (
     <>
       {/* add btns to changes between local api o external api */}
       <button
         onClick={() => {
-          setApi("local");
           dispatch(addApi("local"));
         }}
       >
@@ -49,7 +36,6 @@ const Dogs = ({ page }) => {
       </button>
       <button
         onClick={() => {
-          setApi("dogs");
           dispatch(addApi("dogs"));
         }}
       >

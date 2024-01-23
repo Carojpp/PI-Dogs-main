@@ -4,15 +4,23 @@ import "./createBreed.css";
 
 function CreateTemperament() {
   const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleInputChange = (event, setState) => {
     setState(event.target.value);
+    setMessage("");
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     // Add your validation logic here
     // If everything is valid, do something with the form data
+
+    if (name.trim() == "") {
+      setMessage("Error: All fields are required");
+      return;
+    }
+
     const breedData = {
       name,
     };
@@ -28,10 +36,12 @@ function CreateTemperament() {
       .then((data) => {
         // Handle the response data here
         console.log("Success:", data);
-        setName("")
+        setMessage(data.mensaje);
+        setName("");
       })
       .catch((error) => {
         console.error("Error:", error);
+        setMessage("Error: Temperament was not created");
       });
   };
 
@@ -46,10 +56,11 @@ function CreateTemperament() {
           placeholder="Name"
           className="input"
         />
-        
+
         <button type="submit" className="input">
           Create Temperament
         </button>
+        {message != "" && <p className="message">{message}</p>}
       </form>
     </>
   );

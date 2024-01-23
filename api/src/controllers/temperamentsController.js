@@ -1,6 +1,3 @@
- /*
-Conectaremos el api y a la base de datos
-*/
 const express = require("express");
 const axios = require("axios");
 const { Temperaments } = require("../models/Temperaments.js")
@@ -8,7 +5,7 @@ const URL_API = "https://api.thedogapi.com"; // Esta es la ruta de la API que ne
 
 const getTemperamentsController = async (req, res) => {
   try {
-    // si la table temperaments tiene datos, no se ejecuta el siguiente codigo
+    // si la tabla temperaments tiene datos, no se ejecuta el siguiente codigo
     const result = await Temperaments.findAll(); // puedo usar findAll porque es un modelo de sequalize que se conecta a la tabla temperaments de postgres 
     if (result.length > 0) {
       return res.status(201).json({
@@ -16,6 +13,12 @@ const getTemperamentsController = async (req, res) => {
         entidad: result,
       });
     }
+    // EL CODIGO DE ARRIBA SE EJECUTA SI HAY DATOS EN LA TABLA
+    // 
+    // 
+    // 
+    //  EL CODIGO DE ABAJO SE EJECUTA SOLO UNA VEZ SI LA TABLA DE TEMPERAMENTOS ESTA VACIA 
+    // 
     // se utiliza para ejecutar código que podría lanzar un error. Si ocurre un error dentro de este bloque, el control pasa al bloque catch
     const response = await axios.get(`${URL_API}/v1/breeds`, {
       // Realiza una solicitud GET asincrónica a la URL
@@ -46,8 +49,8 @@ const getTemperamentsController = async (req, res) => {
 
     // const resp = await Temperaments.findAll();
 
-    let tempPromises = tempe.map((temp) => Temperaments.create({ name: temp }));
-    await Promise.all(tempPromises);
+    let tempPromises = tempe.map((temp) => Temperaments.create({ name: temp })); //  
+    await Promise.all(tempPromises); // Cuando todas las promesas han sido cumplidas con exito
 
     const resp = await Temperaments.findAll(); // Trae todos los temperamentos
     console.log('resp ',resp.data)

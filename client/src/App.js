@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route,Link, Outlet} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from "./Views/Home/Home.jsx"
 import Details from "./Views/Details/Details.jsx"
@@ -14,7 +14,6 @@ export default function App() {
   return (
     <div>
       <Router>
-        {/* {path !== '/' && <Navbar/>} */}
       <Routes>
         <Route path='/' element = {<Landing/>}/>
         <Route path='/home' element = { <Home/>}/>

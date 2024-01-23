@@ -11,6 +11,9 @@ function SearchBar() {
   };
 
   const fetchDogBreeds = async () => {
+    if (searchTerm.length < 2) {
+      return;
+    }
     const response = await fetch(
       "http://localhost:3001/searchdog?" +
         new URLSearchParams({
@@ -41,7 +44,7 @@ function SearchBar() {
         value={searchTerm}
         onChange={handleSearchChange}
       />
-      {searchResults.length > 0 && (
+      {searchResults.length > 0 ? (
         <ul>
           {searchResults.map((result, index) => (
             <li>
@@ -51,7 +54,12 @@ function SearchBar() {
             </li>
           ))}
         </ul>
-      )}
+      ):
+      searchTerm.length >1 &&(
+        <div>Raza inexistente</div>
+        )
+        
+      }
     </div>
   );
 }

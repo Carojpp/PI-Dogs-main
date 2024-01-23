@@ -9,6 +9,7 @@ function CreateBreed() {
   const [lifeSpan, setLifeSpan] = useState("");
   const [temperaments, setTemperaments] = useState([]);
   const [temperamentList, setTemperamentList] = useState([]);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3001/temperaments")
@@ -20,6 +21,7 @@ function CreateBreed() {
 
   const handleInputChange = (event, setState) => {
     setState(event.target.value);
+    setMessage("");
   };
 
   const handleSelectChange = (event) => {
@@ -32,6 +34,17 @@ function CreateBreed() {
     event.preventDefault();
     // Add your validation logic here
     // If everything is valid, do something with the form data
+
+    if (
+      name.trim() == "" ||
+      height.trim() == "" ||
+      weight.trim() == "" ||
+      lifeSpan.trim() == ""
+    ) {
+      setMessage("Error: All fields are required");
+      return;
+    }
+
     const breedData = {
       name,
       height,
@@ -51,15 +64,17 @@ function CreateBreed() {
       .then((data) => {
         // Handle the response data here
         console.log("Success:", data);
+        setMessage(data.mensaje);
 
-        setName("")
-        setHeight("")
-        setWeight("")
-        setLifeSpan("")
-        setTemperaments("")
+        setName("");
+        setHeight("");
+        setWeight("");
+        setLifeSpan("");
+        setTemperaments("");
       })
       .catch((error) => {
         console.error("Error:", error);
+        setMessage("Error: Breed was not created");
       });
   };
 
@@ -110,6 +125,7 @@ function CreateBreed() {
         <button type="submit" className="input">
           Create Breed
         </button>
+        {message != "" && <p className="message">{message}</p>}
       </form>
     </>
   );
