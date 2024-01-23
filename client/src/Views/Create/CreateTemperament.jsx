@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 import "./createBreed.css";
 
@@ -13,8 +13,6 @@ function CreateTemperament() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    // Add your validation logic here
-    // If everything is valid, do something with the form data
 
     if (name.trim() == "") {
       setMessage("Error: All fields are required");
@@ -34,7 +32,7 @@ function CreateTemperament() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Handle the response data here
+        
         console.log("Success:", data);
         setMessage(data.mensaje);
         setName("");

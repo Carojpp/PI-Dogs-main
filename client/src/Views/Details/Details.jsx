@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import "./details.css";
 
 function DogDetails() {
-  const navigate = useNavigate();
   const [dog, setDog] = useState(null);
   const [img, setImg] = useState(null);
   const { id } = useParams();

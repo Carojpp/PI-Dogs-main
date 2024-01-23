@@ -12,7 +12,14 @@
 .div-buttons{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
+.page-number{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0px 10px;
+}
+
 .left{
     margin-top: 20px;
     margin-bottom:20px;

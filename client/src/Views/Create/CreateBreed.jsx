@@ -32,8 +32,7 @@ function CreateBreed() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    // Add your validation logic here
-    // If everything is valid, do something with the form data
+  
 
     if (
       name.trim() == "" ||
@@ -62,7 +61,7 @@ function CreateBreed() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Handle the response data here
+       
         console.log("Success:", data);
         setMessage(data.mensaje);
 
@@ -90,21 +89,21 @@ function CreateBreed() {
           className="input"
         />
         <input
-          type="text"
+          type="number"
           value={height}
           onChange={(event) => handleInputChange(event, setHeight)}
           placeholder="Height"
           className="input"
         />
         <input
-          type="text"
+          type="number"
           value={weight}
           onChange={(event) => handleInputChange(event, setWeight)}
           placeholder="Weight"
           className="input"
         />
         <input
-          type="text"
+          type="number"
           value={lifeSpan}
           onChange={(event) => handleInputChange(event, setLifeSpan)}
           placeholder="Life Span"

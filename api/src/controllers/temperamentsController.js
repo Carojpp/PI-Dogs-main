@@ -15,8 +15,6 @@ const getTemperamentsController = async (req, res) => {
     }
     // EL CODIGO DE ARRIBA SE EJECUTA SI HAY DATOS EN LA TABLA
     // 
-    // 
-    // 
     //  EL CODIGO DE ABAJO SE EJECUTA SOLO UNA VEZ SI LA TABLA DE TEMPERAMENTOS ESTA VACIA 
     // 
     // se utiliza para ejecutar código que podría lanzar un error. Si ocurre un error dentro de este bloque, el control pasa al bloque catch
@@ -43,11 +41,6 @@ const getTemperamentsController = async (req, res) => {
     tempe = [...new Set(tempe)]; // Set remover los duplicados
 
     // guarda en la base de datos los temperamentos
-    // await Temperaments.bulkCreate(
-    //   tempe.map((temp) => ({ name: temp }))
-    // );
-
-    // const resp = await Temperaments.findAll();
 
     let tempPromises = tempe.map((temp) => Temperaments.create({ name: temp })); //  
     await Promise.all(tempPromises); // Cuando todas las promesas han sido cumplidas con exito
@@ -63,7 +56,7 @@ const getTemperamentsController = async (req, res) => {
   } catch (error) {
     // Si ocurre un error durante la solicitud (por ejemplo, un problema de red o si la API devuelve un error), el control pasa a este bloque.
     return error;
-    //res.status(500).send(error.toString());
+  
   }
 };
 

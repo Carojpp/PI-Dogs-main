@@ -20,11 +20,11 @@ const getDogsApiController = async (req, res) => {
       },
     });
    
-    res.json({data:response.data}); // status 200
+    res.json({data:response.data});
   } catch (error) {
     // Si ocurre un error durante la solicitud (por ejemplo, un problema de red o si la API devuelve un error), el control pasa a este bloque.
     return error;
-    //res.status(500).send(error.toString());
+  
   }
 };
 
@@ -49,7 +49,7 @@ const getDogsLocalController = async (req, res) => {
     console.log('error ',error)
     // Si ocurre un error durante la solicitud (por ejemplo, un problema de red o si la API devuelve un error), el control pasa a este bloque.
     return error;
-    //res.status(500).send(error.toString());
+  
   }
 };
 
@@ -67,12 +67,11 @@ const searchDogsController = async (req, res) => {
       },
     });
 
-    //return response.data; // Si la solicitud es exitosa, la función devuelve los datos obtenidos de la API
-    res.json(response.data); // status 200
+    res.json(response.data);
   } catch (error) {
     // Si ocurre un error durante la solicitud (por ejemplo, un problema de red o si la API devuelve un error), el control pasa a este bloque.
     return error;
-    //res.status(500).send(error.toString());
+  
   }
 };
 
